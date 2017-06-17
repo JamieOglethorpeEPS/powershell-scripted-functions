@@ -6,12 +6,13 @@ param (
 
 $moduleDir = "$OutputDir\$ModuleName"
 $functionDir = "$moduleDir\Functions"
+$commonPath = [IO.Path]::GetFullPath("$(Split-Path -Parent $PSCommandPath)..\Common")
 
 if (-not (Test-Path $functionDir)) {
 	md -Path $functionDir
 }
 
-$functions = .\New-Executables.ps1 -Path $Path
+$functions = & "$commonPath\New-Executables.ps1" $Path
 $scriptName = $functions.ScriptName
 $functions.ex.Values |
 	where {$_.TypeName -eq 'FunctionDefinitionAst' } |
