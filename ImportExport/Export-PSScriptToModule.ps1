@@ -1,3 +1,4 @@
+# &"$env:GithubRepositories\powershell-scripted-functions\ImportExport\Export-PSScriptToModule.ps1" -Path 'C:\Dev\TemplateBusinessService\artifact\Process_Dependencies.ps1' -OutputDir . -ModuleName CI-Dependencies
 param (
 	[Parameter(Mandatory = $true)][string]$Path,
 	[Parameter(Mandatory = $true)][string]$OutputDir,
@@ -6,7 +7,7 @@ param (
 
 $moduleDir = "$OutputDir\$ModuleName"
 $functionDir = "$moduleDir\Functions"
-$commonPath = [IO.Path]::GetFullPath("$(Split-Path -Parent $PSCommandPath)..\Common")
+$commonPath = [IO.Path]::GetFullPath("$(Split-Path -Parent $PSCommandPath)\..\Common")
 
 if (-not (Test-Path $functionDir)) {
 	md -Path $functionDir

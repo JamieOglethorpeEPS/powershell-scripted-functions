@@ -39,7 +39,8 @@ $scriptName=[System.IO.Path]::GetFileName($Path)
 $heads = $GraphHeads
 $externals = if( $ExternalReferences -ne $null) { $ExternalReferences } else { @() }
 
-$functions = .\New-Executables.ps1 -Path $scriptFile
+$commonPath = [IO.Path]::GetFullPath("$(Split-Path -Parent $PSCommandPath)..\Common")
+$functions = & "$commonPath\New-Executables.ps1" $scriptFile
 
 "strict digraph `"$scriptName`" {"
 'compound=true;'
